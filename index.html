@@ -2,10 +2,106 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Hello, Kotlin/JS!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ANU Skate Club</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+            position: relative;
+        }
+        .background-images {
+            position: absolute;
+            top: 25%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            pointer-events: none;
+        }
+        .background-images img {
+            width: calc(900px / 3);
+            max-width: calc(1080px / 3);
+            min-width: 80px;
+            height: auto;
+        }
+        .logo {
+            width: 1080px;
+            max-width: 90%;
+            margin: 0;
+            padding: 0;
+            display: block;
+        }
+        .content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 0;
+            padding-top: 0;
+        }
+        .anu {
+            font-size: 100px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .activities {
+            font-size: 40px;
+            margin: 30px 0;
+            line-height: 1.6;
+        }
+        .contact {
+            font-size: 40px;
+            margin-top: 40px;
+        }
+        .contact a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 0 10px;
+        }
+        .contact img {
+            width: 40px;
+            height: 40px;
+            vertical-align: middle;
+        }
+    </style>
 </head>
 <body>
-    <div id="root"></div>
-    <script src="ReactTest.js"></script>
+    <div class="content">
+        <img src="./assets/skateclub.png" alt="Skate Club Logo" class="logo">
+        <div class="background-images">
+            <img src="./assets/girl.png" alt="Skater Girl" style="position: absolute; left: 0; margin-left: 5%;">
+            <img src="./assets/guy.png" alt="Skater Guy" style="position: absolute; right: 0; margin-right: 5%;">
+        </div>
+        <div class="anu">ANU</div>
+        <div class="activities">
+            Lessons <br>
+            Group sessions <br>
+            Trips to skateparks <br>
+            Skateboard movie nights <br>
+            Skateboard movie filming <br>
+            and more...
+        </div>
+        <div class="contact">
+            Text Sasha to join <br>
+            <a href="https://www.instagram.com/sashopak" target="_blank">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
+            </a>
+            <a href="https://www.facebook.com/sashapaket" target="_blank">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook">
+            </a>
+        </div>
+    </div>
 </body>
 </html>
