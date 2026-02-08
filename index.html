@@ -1,8 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta name="google-site-verification" content="8wfk6wte-CR6pu_0T4KXUSZsS5Gt6CWFuAQFvFH53E4" />
-    <meta http-equiv="Refresh" content="0; URL=https://www.instagram.com/skateboardinganu" />
-    <!-- <title>ANU Skate Club</title> -->
+<meta charset="UTF-8">
+<title>Redirecting...</title>
 </head>
+<body>
+<p>Redirecting…</p>
+
+<script>
+(function() {
+    const params = new URLSearchParams(window.location.search);
+    const hash = params.get('h');
+    const youtubeId = params.get('y');
+
+    if (!hash) {
+        document.body.textContent = 'Error: missing media hash';
+        return;
+    }
+
+    // Hardcoded local mirrors
+    const mirrors = ['dell-deck:8080', 'deck:8080'];
+    const youtubeURL = youtubeId ? `https://youtu.be/${youtubeId}` : null;
+
+    function tryMirror(index) {
+        if (index >= mirrors.length) {
+            if (youtubeURL) {
+                window.location.href = youtubeURL;
+            } else {
+                document.body.textContent = 'No local mirrors available and no YouTube link present.';
+            }
+            return;
+        }
+
+        const url = `http://${mirrors[index]}/listen/${hash}`;
+        const controller = new AbortController();
+        const signal = controller.signal;
+
+        // Timeout for fetch to feel instant (~100ms)
+        const timeout = setTimeout(() => {
+            controller.abort();
+        }, 100);
+
+        fetch(url, { method: 'HEAD', mode: 'no-cors', signal })
+            .then(() => {
+                clearTimeout(timeout);
+                window.location.href = url;
+            })
+            .catch(() => {
+                clearTimeout(timeout);
+                tryMirror(index + 1);
+            });
+    }
+
+    tryMirror(0);
+})();
+</script>
+</body>
 </html>
